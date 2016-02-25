@@ -4,14 +4,35 @@
     <meta charset="utf-8">
     <title>imaginality</title>
     <link rel="stylesheet" href="style.css">
+
     <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/coffee-script/1.7.1/coffee-script.min.js"></script>
+
   </head>
   <body>
+
+    <section id="apiSection">
+        <fieldset class="line" id="lineOne">
+            <label for="apiKey" class="portLabel">Key</label>
+            <input id="apiKey" class="portInput"></input>
+        </fieldset>
+        <fieldset class="line" id="lineTwo" >
+            <label for="apiSecret" class="portLabel">Secret</label>
+            <input id="apiSecret" type="password" class="portInput"></input>
+        </fieldset>
+        <button id="clearApiInfo">Clear</button>
+
+        <p id="version" class="line"></p>
+    </section>
+
+
     <div id="app">
       <p id="status">app not loaded</p>
       <div id="cards">
       </div>
     </div>
-    <script src="index.js"></script>
+    <script src="src/index.js"></script>
+
+
   </body>
 </html>

@@ -95,22 +95,8 @@ var setupImages = function (container, cards) {
     return images;
 }
 
-
-// Processing/rendering
-var processImageRuntime = function(img, callback) {
-
-    // FIXME: find good way to do process isolation with imgflo runtime
-    // Having dataURLs would make them more stable over current HTTP ones at least...
-
-    // Send new data to inports over FBP/WS
-    // Wait for output url
-    // Add url to img.src
-    // Wait for url to be loaded
-    // When loaded, call done
-};
-
 // For imgflo-server
-// Could use the-grid/imgflo-url library here
+// TODO: use the-grid/imgflo-url library here?
 var createRequestUrl = function(graphname, parameters, apiKey, apiSecret) {
     var hasQuery = Object.keys(parameters).length > 0;
     var search = graphname + (hasQuery ? '?' : '');
@@ -130,7 +116,6 @@ var createRequestUrl = function(graphname, parameters, apiKey, apiSecret) {
 
     return url;
 }
-
 
 
 // TODO: make this a class, emitting events on state changes, allowing re-processing
@@ -157,18 +142,43 @@ var main = function() {
     var data = generateCardData();
     var images = setupImages(id("cards"), data);
 
-    var key = localStorage["imgflo-server-api-key"];
-    var secret = localStorage["imgflo-server-api-secret"];
+    var apiConfig = {
+        key: null,
+        secret: null,
+        server: 'http://localhost:8080',
+    };
 
-    if (!key || !secret) {
-        alert('Missing imgflo-server API key/secret!');
-        return;
-    }
+    // API info
+    var readApiInfo = function() {
+        id("apiKey").value = localStorage["imgflo-server-api-key"] || "";
+        id("apiSecret").value = localStorage["imgflo-server-api-secret"] || "";
+    };
+    readApiInfo();
+
+    id('clearApiInfo').onclick = function () {
+        localStorage["imgflo-server-api-key"] = "";
+        localStorage["imgflo-server-api-secret"] = "";
+        readApiInfo();
+    };
+
+    var saveApiInfo = function() {
+        localStorage["imgflo-server-api-key"] = id("apiKey").value;
+        localStorage["imgflo-server-api-secret"] = id("apiSecret").value;
+    };
+    id('apiKey').onblur = saveApiInfo;
+    id('apiSecret').onblur = saveApiInfo;
+
+    // multi-dimensional-view-thing
 
     // TODO: allow to trigger without reloading page
-    var server = 'http://localhost:8081';
+    // FIXME: make server configurable, persist like keys
+    // TODO: capture server/key/secret into config object
     id("status").innerHTML = 'working';
-    process(images, 'gaussianblur', server, key, secret, function() {
+
+    apiConfig.key = localStorage["imgflo-server-api-key"];
+    apiConfig.secret = localStorage["imgflo-server-api-secret"];
+
+    process(images, 'gaussianblur', apiConfig.server, apiConfig.key, apiConfig.secret, function() {
         id("status").innerHTML = 'done';
     });
 }

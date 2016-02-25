@@ -1,3 +1,15 @@
+
+/* Reset */
+* {
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+  position: relative;
+
+#chart svg {
+    height: 500px;
+}
+
 /* Main layout */
 #app {
     -moz-box-sizing: border-box;
