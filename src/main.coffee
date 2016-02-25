@@ -23,7 +23,9 @@ evensteps = (start, stop, n) ->
 generateCardData = ->
   images = [
     'http://tctechcrunch2011.files.wordpress.com/2015/01/happy-kitten-kittens-5890512-1600-1200.jpg'
-    'http://cdn.decorenable.com/images/www.funkyfurnitureandstuff.com/bolzano_red.JPG'
+    'https://s3-us-west-2.amazonaws.com/the-grid-img/p/ae0ae224cf912fa51a92b5915ed9440b54617e1a.jpg'
+    'https://s3-us-west-2.amazonaws.com/the-grid-img/p/aabbbf8d55648167302cb3e67666a1c4b1c9a6f7.jpg'
+    'http://hivemodern.com/public_resources/eames-lounge-chair-ottoman-charles-and-ray-eames-herman-miller-1.jpg'
   ]
   data = []
   # For now simple 2d grid over one val
