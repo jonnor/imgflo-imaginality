@@ -23,7 +23,17 @@ Collect the data somehow.... Can be up to user of imaginality
 
 Showing things in-context versus isolated
 
-Original versus processed is particularly interesting> does processing make it get worse or better?
+## Experiments
+
+* Original versus processed
+Particularly interesting> does processing make it get worse or better?
+* graph-v1 versus graph-v2
+Did a change make things better or worse
+* Change params slightly from starting point
+Does it improve or worsen? Does it make any difference at all?
+* Radically different parameters, possibly randomized
+Try to jump to a new place, see if completely other areas could be more interesting
+
 
 ## Working inline
 
